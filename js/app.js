@@ -25,6 +25,7 @@ const loadCategoryData = async (id) => {
 }
 
 const displayCategoryData = (data) => {
+  // console.log(typeof data.length);
   const container = document.getElementById('card-container');
   container.textContent = '';
   data.forEach(singleCard => {
@@ -36,7 +37,7 @@ const displayCategoryData = (data) => {
     const minutes = Math.floor((posted_date % 3600) / 60);
 
     const div = document.createElement('div');
-    div.classList = `max-w-sm bg-white border border-gray-200 rounded-lg shadow`;
+    div.classList = `lg:max-w-sm bg-white border border-gray-200 rounded-lg shadow`;
     div.innerHTML = `
     <a href="#" class='relative'>
     <img
@@ -68,6 +69,17 @@ const displayCategoryData = (data) => {
     `
     container.appendChild(div);
   })
+  const noDataContainer = document.getElementById('no-data-container');
+  noDataContainer.textContent = '';
+  if(data.length === 0){
+    const div = document.createElement('div');
+    div.classList = `text-center`
+    div.innerHTML = `
+    <img src='Icon.png' alt='icon'>
+    <h2>Oops!! Sorry, There is no <br> content here</h2>
+    `
+    noDataContainer.appendChild(div);
+  }
 }
 
 loadBtnData();
